@@ -51,7 +51,7 @@ namespace WebApplicationBasic
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            ILoggerFactory loggerFactory, LibraryContext libraryContext)
+                              ILoggerFactory loggerFactory, LibraryContext libraryContext)
         {
             // Add console as log, can be replaced with file or database in real application
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -70,7 +70,6 @@ namespace WebApplicationBasic
                     {
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
-
                     });
                 });
             }
@@ -85,6 +84,9 @@ namespace WebApplicationBasic
                     src.DateOfBirth.GetCurrentAge()));
 
                 cfg.CreateMap<Book, BookDto>();
+
+                cfg.CreateMap<AuthorForCreationDto, Author>();
+                cfg.CreateMap<BookForCreationDto, Book>();
             });
 
             libraryContext.EnsureSeedDataForContext();

@@ -10,4 +10,3 @@
 - Nouns: things, not actions
 
 
-## Status Codes
