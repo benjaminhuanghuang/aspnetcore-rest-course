@@ -24,12 +24,14 @@ namespace Library.API.Controllers
         public IActionResult GetAuthors()
         { 
             var authorsFromRepo = _libraryRepository.GetAuthors();
-
+            // Map entities to dto models
             var authors = Mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo);
             return Ok(authors);
         }
 
         [HttpGet("{id}")]
+        // Get single resource 
+        // http://localhost:5000/api/authors/<id>
         public IActionResult GetAuthor(Guid id)
         {
             var authorFromRepo = _libraryRepository.GetAuthor(id);

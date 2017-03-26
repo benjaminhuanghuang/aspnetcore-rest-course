@@ -29,7 +29,8 @@ namespace WebApplicationBasic
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   // Used for dependency injection. services is the container for all the 
+        {
+            // Used for dependency injection. services is the container for all the 
             // dependencies in application
             // Add framework services.
             services.AddMvc(setupAction =>
@@ -49,7 +50,8 @@ namespace WebApplicationBasic
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            ILoggerFactory loggerFactory, LibraryContext libraryContext)
         {
             // Add console as log, can be replaced with file or database in real application
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -69,7 +71,7 @@ namespace WebApplicationBasic
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
 
-                    });                      
+                    });
                 });
             }
 
@@ -84,8 +86,8 @@ namespace WebApplicationBasic
 
                 cfg.CreateMap<Book, BookDto>();
             });
-            
 
+            libraryContext.EnsureSeedDataForContext();
             app.UseMvc();
         }
     }

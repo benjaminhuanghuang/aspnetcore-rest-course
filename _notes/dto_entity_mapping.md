@@ -1,9 +1,11 @@
+
+
 ## Dependency
     $ dotnet add package AutoMapper
 
-## 
+## Outer facing model != Business model != Entity model
     Entity : the object in database, has validation attributes
-    Data transfer objects: The return value of the RESTful API
+    Dto (Data transfer objects): The return value of the RESTful API
     
 ## Coding
     * Startup.cs / Configure()
