@@ -63,7 +63,7 @@ namespace Library.API.Controllers
                 throw new Exception("Creating an author failed on save.");
             }
             var authorToReturn = Mapper.Map<AuthorDto>(authorEntity);
-            //return code 201
+            //return code 201: Created
             return CreatedAtRoute("GetAuthor", new {id= authorToReturn.Id}, authorToReturn);
         }
     }

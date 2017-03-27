@@ -11,11 +11,16 @@
     * Startup.cs / Configure()
     AutoMapper.Mapper.Initialize(cfg =>
     {
-        cfg.CreateMap<Entities.Author, Models.AuthorDto>()
+        // output
+        cfg.CreateMap<Author, AuthorDto>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src =>
             $"{src.FirstName} {src.LastName}"))
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src =>
             src.DateOfBirth.GetCurrentAge()));
 
-        cfg.CreateMap<Entities.Book, Models.BookDto>();
+        cfg.CreateMap<Book, BookDto>();
+        
+        // input
+        cfg.CreateMap<AuthorForCreationDto, Author>();
+        cfg.CreateMap<BookForCreationDto, Book>();
     });
