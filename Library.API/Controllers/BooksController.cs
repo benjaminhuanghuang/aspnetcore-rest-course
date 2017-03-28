@@ -60,8 +60,7 @@ namespace Library.API.Controllers
        }
 
         [HttpPost()]
-        public IActionResult CreateBookForAuthor(Guid authorId, 
-            [FromBody] BookForCreationDto book)
+        public IActionResult CreateBookForAuthor(Guid authorId, [FromBody] BookForCreationDto book)
         {
             if (book == null)
             {
@@ -74,11 +73,11 @@ namespace Library.API.Controllers
                     "The provided description should be different from the title.");
             }
 
-            if (!ModelState.IsValid)
-            {
-                // return 422
-                return new UnprocessableEntityObjectResult(ModelState);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     // return 422
+            //     return new UnprocessableEntityObjectResult(ModelState);
+            // }
 
             if (!_libraryRepository.AuthorExists(authorId))
             {
